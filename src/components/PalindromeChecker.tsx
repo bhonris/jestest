@@ -2,9 +2,14 @@ import React, {  useState } from 'react';
 
 
 export const isPalindrome = (value: string): boolean => {
-  console.log(value)
-  return false
+  return true
 }
+
+export enum Result {
+  yes = "Yes, its a Palindrome!",
+  no = "Nope"
+}
+
 
 const sleep = async (ms: number) => {
   return new Promise(resolve => setTimeout(resolve, ms))
@@ -13,11 +18,11 @@ const sleep = async (ms: number) => {
 function PalindromeChecker() {
   const [inputValue, setInputValue] = useState('')
   const [resultValue, setResultValue] = useState('')
-
+  
   const displayResult = async (event: React.MouseEvent): Promise<void> => {
     setResultValue('calculating...')
     await sleep(500)
-    const result = isPalindrome(inputValue) ? 'Yes, its a Palindrome!' : 'Nope' 
+    const result = isPalindrome(inputValue) ? Result.yes : Result.no
     setResultValue(result)
 
   }  
@@ -32,7 +37,8 @@ function PalindromeChecker() {
         <h3>{resultValue}</h3>
       </header>
     </div>
-  );
+  )
+  
 }
 
-export default PalindromeChecker;
+export default PalindromeChecker
